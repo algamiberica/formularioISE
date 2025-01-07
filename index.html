@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -96,6 +96,20 @@
             margin-top: 20px;
             word-break: break-word;
         }
+
+        .success-message {
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -188,6 +202,7 @@
             <button type="submit">Submit</button>
         </form>
 
+        <div id="message" class="success-message"></div>
         <div id="output" class="output-container"></div>
     </div>
 
@@ -215,7 +230,22 @@
                     mode: "no-cors"
                 });
 
-                
+                if (response.ok) {
+                    document.getElementById('message').textContent = 'Your response has been successfully submitted!';
+                    document.getElementById('message').classList.remove('error-message');
+                    document.getElementById('message').classList.add('success-message');
+                    event.target.reset();
+                } else {
+                    document.getElementById('message').textContent = 'There was an issue submitting your form. Please try again.';
+                    document.getElementById('message').classList.remove('success-message');
+                    document.getElementById('message').classList.add('error-message');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = 'An error occurred while submitting your form.';
+                document.getElementById('message').classList.remove('success-message');
+                document.getElementById('message').classList.add('error-message');
+            }
         });
     </script>
 </body>
