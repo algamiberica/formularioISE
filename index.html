@@ -211,7 +211,7 @@
             data.demos = Array.from(document.querySelectorAll('.demo-button.selected')).map(btn => btn.dataset.demo);
 
             try {
-                const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwP3xJuygzkMOmRD4FsFR1-PaVQLwUWeeFXRPg9czusPFGRQItqlYURfCTdWw_zbpqheg/exec', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
